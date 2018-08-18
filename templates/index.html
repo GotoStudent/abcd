@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HI</title>
+</head>
+<body>
+<form action="/my/" method="post">
+
+    <label for="1">Текст:</label>
+    <input name="key" id="1" type="text"/>
+    {% csrf_token %}
+
+    <input type="submit" value="Кул">
+</form>
+{% for item in list %}
+    {{ item }}
+    <form action="/my/" method="post">
+        <input type="hidden" name="done" value="{{ item }}">
+        {% csrf_token %}
+        <input type="submit" value="Сделано"/>
+    </form>
+
+    <form action="/my/" method="post">
+        <input type="hidden" name="forgotten" value="{{ item }}">
+        {% csrf_token %}
+        <input type="submit" value="Удалить"/>
+    </form>
+    <br>
+{% endfor %}
+<h1>{{ donetasks }}</h1>
+<h1>{{ forgottentasks }}</h1>
+</body>
+</html>
